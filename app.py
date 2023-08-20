@@ -8,7 +8,22 @@ medidas_velocidade_futura = st.selectbox("Selecione o tipo de medida de velocida
 
 input_velocidade = st.number_input("Digite o valor da velocidade")
 
-def converte_velocidade(velocidade_atual):
-    return velocidade_atual *2
+def converte_velocidade(velocidade_atual, velocidade_futura, input_velocidade):
+    match velocidade_atual:
+        case "km/h":
+            match velocidade_futura:
+                case "m/s":
+                    return input_velocidade / 3.6
+                case velocidade_atual:
+                    return  input_velocidade
+        case "m/s": 
+            match velocidade_futura:
+                case "k/h":
+                    return input_velocidade * 3.6
+                case velocidade_atual:
+                    return input_velocidade
+        case default:
+            return "Selecione o tipo de medida para converter ou a ser convertida"
 
-st.write(f"{converte_velocidade(input_velocidade)}")
+
+st.write(f"{converte_velocidade(medidas_velocidade_atual,medidas_velocidade_futura,input_velocidade)}")
